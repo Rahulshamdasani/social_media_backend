@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m&-r=)iy$$fv1)5$vdmi1#q+9q*s!e_xcibod=^6h_d3hh40*('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['koobecaf12.herokuapp.com','localhost:8000']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -41,12 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    # Profile app
-    'profiles.apps.ProfilesConfig',
-    'rest_framework.authtoken',
+    # 'rest_framework.authtoken',
 
     # project apps
     'accounts.apps.AccountsConfig',
+    'profiles.apps.ProfilesConfig',
+    'posts.apps.PostsConfig',
 
     # 3rd party
     'corsheaders',
@@ -60,18 +60,6 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'accounts.UserAccount'
-
-
-# Putting this temp for checking api view
-REST_FRAMEWORK = {
-   'DEFAULT_AUTHENTICATION_CLASSES': (
-       'rest_framework.authentication.TokenAuthentication',
-   ),
-   'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAdminUser'
-   ),
-}
-
 
 # if needed for django.contrib.sites
 SITE_ID = 1
@@ -104,8 +92,8 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=240),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'AUTH_TOKEN_CLASSES': (
         'rest_framework_simplejwt.tokens.AccessToken',
     )
@@ -165,19 +153,16 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.ema
 CORS_ALLOWED_ORIGINS = [
     # 'http://localhost:8000', # default django port
     'http://localhost:3000', # default react port
+    'http://127.0.0.1:3000',
     # '*', # all
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', # add for cors headers
     'social_django.middleware.SocialAuthExceptionMiddleware', #for google auth
     'django.middleware.security.SecurityMiddleware',
-
-    # Hosting middle ware
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware', # add for cors headers
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -255,13 +240,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
-
 STATIC_URL = '/static/'
-
-STATIC_DIRS = [
-    os.path.join(BASE_DIR,"static")
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
