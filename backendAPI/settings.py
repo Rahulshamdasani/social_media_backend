@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m&-r=)iy$$fv1)5$vdmi1#q+9q*s!e_xcibod=^6h_d3hh40*('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['koobecaff.herokuapp.com','localhost:8000']
 
 
 # Application definition
@@ -172,6 +172,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware', #for google auth
     'django.middleware.security.SecurityMiddleware',
+
+    # Hosting middle ware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware', # add for cors headers
     'django.middleware.common.CommonMiddleware',
@@ -250,6 +254,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
 
 STATIC_URL = '/static/'
 
