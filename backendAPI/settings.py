@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-m&-r=)iy$$fv1)5$vdmi1#q+9q*s!e_xcibod=^6h_d3hh40*(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['koobecaff.herokuapp.com','https://social-media-frontend-two.vercel.app']
+ALLOWED_HOSTS = ['koobecaff.herokuapp.com','https://social-media-frontend-two.vercel.app',"*"]
 
 
 # Application definition
@@ -163,9 +163,10 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.ema
 # CORS Settings  Cross-Origin Resource Sharing https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 # https://www.django-rest-framework.org/topics/ajax-csrf-cors/
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8000', # default django port
+     # default django port
      # default react port
     'https://social-media-frontend-two.vercel.app',
+    '*',
     # '*', # all
 ]
 CORS_ALLOW_ALL_ORIGINS = True
