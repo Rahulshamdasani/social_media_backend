@@ -33,15 +33,19 @@ schema_view = get_schema_view(  # new
 )
 
 urlpatterns = [
+    # admin
     path('admin/', admin.site.urls),
+    # auth
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path('auth/', include('djoser.social.urls')),
-    # Profile
-    path('profile/', include('profiles.urls')),
-
+    # API GUIs/docs    
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    # Profile
+    path('profile/', include('profiles.urls')),
+    # Posts
+    path('posts/', include('posts.urls')),
 ]
 
 # urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
