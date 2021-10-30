@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-m&-r=)iy$$fv1)5$vdmi1#q+9q*s!e_xcibod=^6h_d3hh40*(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['koobecaff.herokuapp.com','localhost','https://social-media-frontend-two.vercel.app']
+ALLOWED_HOSTS = ['koobecaff.herokuapp.com','https://social-media-frontend-two.vercel.app']
 
 
 # Application definition
@@ -77,13 +77,13 @@ REST_FRAMEWORK = {
 SITE_ID = 1
 
 # Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # sends email using console
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # sends email using smtp
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'koobecafteam@gmail.com'
-# EMAIL_HOST_PASSWORD = 'selftaught'
-# EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # sends email using console
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # sends email using smtp
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'koobecafteam@gmail.com'
+EMAIL_HOST_PASSWORD = 'selftaught'
+EMAIL_USE_TLS = True
 
 #           DRF settings
 REST_FRAMEWORK = {
@@ -163,8 +163,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.ema
 # CORS Settings  Cross-Origin Resource Sharing https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 # https://www.django-rest-framework.org/topics/ajax-csrf-cors/
 CORS_ALLOWED_ORIGINS = [
-    # 'http://localhost:8000', # default django port
-    'http://localhost:3000', # default react port
+    'http://localhost:8000', # default django port
+     # default react port
     'https://social-media-frontend-two.vercel.app/login',
     # '*', # all
 ]
