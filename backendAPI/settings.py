@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-m&-r=)iy$$fv1)5$vdmi1#q+9q*s!e_xcibod=^6h_d3hh40*(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['koobecaff.herokuapp.com','localhost','https://social-media-frontend-two.vercel.app/']
+ALLOWED_HOSTS = ['koobecaff.herokuapp.com','localhost','https://social-media-frontend-two.vercel.app']
 
 
 # Application definition
