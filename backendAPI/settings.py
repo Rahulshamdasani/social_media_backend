@@ -165,7 +165,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.ema
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8000', # default django port
      # default react port
-    'https://social-media-frontend-two.vercel.app/login',
+    'https://social-media-frontend-two.vercel.app',
     # '*', # all
 ]
 CORS_ALLOW_ALL_ORIGINS = True
