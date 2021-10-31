@@ -150,22 +150,29 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.ema
 ###########################################
 # CORS Settings  Cross-Origin Resource Sharing https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 # https://www.django-rest-framework.org/topics/ajax-csrf-cors/
-CORS_ALLOWED_ORIGINS = [
-    # 'http://localhost:8000', # default django port
-    'http://localhost:3000', # default react port
-    'http://127.0.0.1',
-    'https://social-media-frontend-two.vercel.app',
-    # '*', # all
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:8000', # default django port
+#     'http://localhost:3000', # default react port
+#     'http://127.0.0.1',
+#     'https://social-media-frontend-two.vercel.app',
+#     # '*', # all
+# ]
+
+CORS_ALLOWED_ORIGINS = [   
+     '*', # all
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # add for cors headers
     'social_django.middleware.SocialAuthExceptionMiddleware', #for google auth
     'django.middleware.security.SecurityMiddleware',
 
     # Hosting middle ware
     'whitenoise.middleware.WhiteNoiseMiddleware',
+
+    # cors headers
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
