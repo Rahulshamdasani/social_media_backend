@@ -168,6 +168,9 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.ema
 MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware', #for google auth
     'django.middleware.security.SecurityMiddleware',
+    
+    # cors headers
+    "corsheaders.middleware.CorsMiddleware",
 
     # Hosting middle ware
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -175,8 +178,6 @@ MIDDLEWARE = [
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     
-    # cors headers
-    "corsheaders.middleware.CorsMiddleware",
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
