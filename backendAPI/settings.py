@@ -158,12 +158,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.ema
 #     # '*', # all
 # ]
 
-CORS_ALLOWED_ORIGINS = [   
-    'https://social-media-frontend-two.vercel.app',
-    'http://localhost:3000',
-     '*', # all
-]
-CORS_ALLOW_ALL_ORIGINS = True
+
 
 MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware', #for google auth
@@ -207,6 +202,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backendAPI.wsgi.application'
 
+
+CORS_ALLOWED_ORIGINS = [   
+    'https://social-media-frontend-two.vercel.app',
+    'http://localhost:3000',
+     '*', # all
+]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = False
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
