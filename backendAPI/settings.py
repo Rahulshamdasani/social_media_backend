@@ -90,8 +90,13 @@ REST_FRAMEWORK = {
     #     'django_filters.rest_framework.DjangoFilterBackend'], # GLOBAL FILTERING on API
 }
 
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = False
+
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
+    
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=240),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'AUTH_TOKEN_CLASSES': (
@@ -203,13 +208,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backendAPI.wsgi.application'
 
 
-CORS_ALLOWED_ORIGINS = [   
-    'https://social-media-frontend-two.vercel.app',
-    'http://localhost:3000',
-     '*', # all
-]
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = False
+
+
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
