@@ -208,7 +208,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backendAPI.wsgi.application'
 
 
-
+CORS_ALLOWED_ORIGINS = [   
+    '*',
+    'https://social-media-frontend-two.vercel.app',
+]
 
 
 # Database
