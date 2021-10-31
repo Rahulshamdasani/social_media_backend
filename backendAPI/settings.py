@@ -159,6 +159,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.ema
 # ]
 
 CORS_ALLOWED_ORIGINS = [   
+    'https://social-media-frontend-two.vercel.app',
+    'http://localhost:3000',
      '*', # all
 ]
 CORS_ALLOW_ALL_ORIGINS = True
@@ -170,11 +172,12 @@ MIDDLEWARE = [
     # Hosting middle ware
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
-    # cors headers
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
 
     'django.contrib.sessions.middleware.SessionMiddleware',
+    
+    # cors headers
+    "corsheaders.middleware.CorsMiddleware",
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
