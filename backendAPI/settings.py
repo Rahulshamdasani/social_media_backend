@@ -178,6 +178,7 @@ MIDDLEWARE = [
     # cors headers
     "corsheaders.middleware.CorsMiddleware",
 
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -211,6 +212,9 @@ WSGI_APPLICATION = 'backendAPI.wsgi.application'
 CORS_ALLOWED_ORIGINS = [   
     '*',
     'https://social-media-frontend-two.vercel.app',
+    'google.com',
+    'localhost:8000',
+    '127.0.0.1:3000',
 ]
 
 
