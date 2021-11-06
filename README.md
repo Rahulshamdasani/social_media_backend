@@ -35,3 +35,15 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:8000',
 )
+
+
+
+##  Approach 2
+pip install django-heroku<br/>
+
+go to settings.py<br/>
+At the top write:
+import django_heroku
+At the end of file
+django_heroku.settings(locals())
+
