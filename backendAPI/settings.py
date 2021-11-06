@@ -283,7 +283,7 @@ STATIC_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGINS_WHITELIST = "https://koobecaffrontend.herokuapp.com",
+CORS_ORIGINS_WHITELIST = "koobecaffrontend.herokuapp.com",
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = False
