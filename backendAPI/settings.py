@@ -97,7 +97,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # sends email usin
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'koobecafteam@gmail.com'
-EMAIL_HOST_PASSWORD = 'selftaught'
+EMAIL_HOST_PASSWORD = 'ykfbdsneniytlcmx'
 EMAIL_USE_TLS = True
 
 #           DRF settings
