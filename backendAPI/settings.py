@@ -71,11 +71,11 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     
     # cors headers
-    "corsheaders.middleware.CorsMiddleware",
 
     # Hosting middle ware
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
+    "corsheaders.middleware.CorsMiddleware",
 
     
 
