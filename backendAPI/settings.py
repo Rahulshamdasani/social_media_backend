@@ -65,6 +65,27 @@ INSTALLED_APPS = [
 
 ]
 
+MIDDLEWARE = [
+    'social_django.middleware.SocialAuthExceptionMiddleware', #for google auth
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    
+    # cors headers
+    "corsheaders.middleware.CorsMiddleware",
+
+    # Hosting middle ware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
+
+    
+
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
 AUTH_USER_MODEL = 'accounts.UserAccount'
 
 # if needed for django.contrib.sites
@@ -176,26 +197,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.ema
 
 
 
-MIDDLEWARE = [
-    'social_django.middleware.SocialAuthExceptionMiddleware', #for google auth
-    'django.middleware.security.SecurityMiddleware',
-    
-    # cors headers
-    "corsheaders.middleware.CorsMiddleware",
 
-    # Hosting middle ware
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
-
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    
-
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 
 ROOT_URLCONF = 'backendAPI.urls'
 
