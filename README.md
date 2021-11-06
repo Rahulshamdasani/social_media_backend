@@ -47,3 +47,18 @@ import django_heroku
 At the end of file
 django_heroku.settings(locals())
 
+install whitenoise
+add whitenoise middleware
+install gunicorn
+create Proc file.
+
+### Converting to postgres
+pip install dj-database-url
+
+#### In settings.py after the database add this line.
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+go to settings inside heroku and goto app-> settings-> reveal environment variables
+and add on fied
+SECRET_KEY = SECRET_KEY
+Copy the databse url and set it inside environment variables
