@@ -117,14 +117,7 @@ REST_FRAMEWORK = {
     #     'django_filters.rest_framework.DjangoFilterBackend'], # GLOBAL FILTERING on API
 }
 
-CORS_ALLOWED_ORIGINS = [
-"https://koobecaffrontend.herokuapp.com",
-"https://koobecaff.herokuapp.com",
-"http://localhost:8080",
-"http://127.0.0.1:9000"
-]
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = False
+
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
@@ -289,3 +282,8 @@ STATIC_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGINS_WHITELIST = "https://koobecaffrontend.herokuapp.com",
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = False
