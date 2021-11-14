@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'profiles.apps.ProfilesConfig',
     'posts.apps.PostsConfig',
+    'search.apps.SearchConfig',
 
     # 3rd party
     'corsheaders',
