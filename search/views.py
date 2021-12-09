@@ -21,11 +21,12 @@ class SearchProfilesAndPostsView(APIView):
         try:
             search_term = searchTerm
             profiles = Profile.objects.filter(
-                Q(user__email__contains=search_term) |
-                Q(display_name__contains=search_term)
+                Q(user__email__icontains=search_term) | Q(locations__icontains=searchTerm) |
+                Q(display_name__icontains=search_term) | Q(bio__icontains=searchTerm) | Q(
+                    first_name__icontains=searchTerm) | Q(last_name__contains=searchTerm)
             )
             profilesSerializer = ProfileSerializer(profiles, many=True)
-            posts = Posts.objects.filter(postText__contains=search_term)
+            posts = Posts.objects.filter(Q(postAuthor__user__email__icontains=searchTerm) | Q(postText__icontains=searchTerm))
             postsSerializer = PostsSerializer(posts, many=True)
             return Response(
                 {

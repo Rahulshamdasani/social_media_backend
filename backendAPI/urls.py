@@ -48,6 +48,13 @@ urlpatterns = [
     path('posts/', include('posts.urls')),
     # Search
     path('search/', include('search.urls')),
+
+    # Messages
+    path('messages/', include('directmessages.urls')),
+    # Pages
+    path('pages/',include('pages.urls')),
+    # Events
+    path('events/',include('events.urls')),
 ]
 
 # urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
