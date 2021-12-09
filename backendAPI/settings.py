@@ -13,11 +13,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
-
-
-
-
-
+import environ
+env = environ.Env()
+environ.Env.read_env()
+DATABASE_URL = env('DATABASE_URL')
+print("DBURL+",DATABASE_URL)
 # import dj_database_url
 
 
