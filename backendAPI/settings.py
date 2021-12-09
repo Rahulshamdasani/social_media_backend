@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from datetime import timedelta
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -47,6 +48,11 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'profiles.apps.ProfilesConfig',
     'posts.apps.PostsConfig',
+    'search.apps.SearchConfig',
+    'directmessages.apps.DirectmessagesConfig',
+    'pages.apps.PagesConfig',
+    'events.apps.EventsConfig',
+
 
     # 3rd party
     'corsheaders',
@@ -70,7 +76,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # sends email usin
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'koobecafteam@gmail.com'
-EMAIL_HOST_PASSWORD = 'selftaught'
+EMAIL_HOST_PASSWORD = 'qziyntqdokjkldix'
 EMAIL_USE_TLS = True
 
 #           DRF settings
@@ -89,7 +95,6 @@ REST_FRAMEWORK = {
     # 'DEFAULT_FILTER_BACKENDS': [
     #     'django_filters.rest_framework.DjangoFilterBackend'], # GLOBAL FILTERING on API
 }
-
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = False
@@ -155,15 +160,14 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.ema
 ###########################################
 # CORS Settings  Cross-Origin Resource Sharing https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 # https://www.django-rest-framework.org/topics/ajax-csrf-cors/
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost:8000', # default django port
-#     'http://localhost:3000', # default react port
-#     'http://127.0.0.1',
-#     'https://social-media-frontend-two.vercel.app',
-#     # '*', # all
-# ]
-
-
+CORS_ALLOWED_ORIGINS = [
+    # 'http://localhost:8000', # default django port
+    'http://localhost:3000', # default react port
+    'http://127.0.0.1:3000',
+    'https://social-media-frontend-two.vercel.app',
+    # '*', # all
+]
+CORS_ALLOW_ALL_ORIGINS = True
 
 MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware', #for google auth
@@ -179,6 +183,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     
 
+    'corsheaders.middleware.CorsMiddleware', # add for cors headers
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -213,8 +218,6 @@ CORS_ALLOWED_ORIGINS = [
     '*',
     'https://social-media-frontend-two.vercel.app',
 ]
-
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -256,19 +259,17 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
-
 STATIC_URL = '/static/'
-
+CORS_ORIGIN_WHITELIST = 'localhost:3000',
 STATIC_DIRS = [
     os.path.join(BASE_DIR,"static")
 ]
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
