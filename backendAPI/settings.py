@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
+import environ
+env = environ.Env()
+environ.Env.read_env()
+DATABASE_URL = env('DATABASE_URL')
+print("DBURL+",DATABASE_URL)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -65,6 +70,27 @@ INSTALLED_APPS = [
 
 ]
 
+MIDDLEWARE = [
+    'social_django.middleware.SocialAuthExceptionMiddleware', #for google auth
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    
+
+    # Hosting middle ware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
+    # cors headers
+    "corsheaders.middleware.CorsMiddleware",
+
+    
+
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
 AUTH_USER_MODEL = 'accounts.UserAccount'
 
 # if needed for django.contrib.sites
@@ -96,8 +122,6 @@ REST_FRAMEWORK = {
     #     'django_filters.rest_framework.DjangoFilterBackend'], # GLOBAL FILTERING on API
 }
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = False
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
@@ -160,36 +184,15 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.ema
 ###########################################
 # CORS Settings  Cross-Origin Resource Sharing https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 # https://www.django-rest-framework.org/topics/ajax-csrf-cors/
-CORS_ALLOWED_ORIGINS = [
-    # 'http://localhost:8000', # default django port
-    'http://localhost:3000', # default react port
-    'http://127.0.0.1:3000',
-    'https://social-media-frontend-two.vercel.app',
-    # '*', # all
-]
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOWED_ORIGINS = [
+#     # 'http://localhost:8000', # default django port
+#     'http://localhost:3000', # default react port
+#     'http://127.0.0.1:3000',
+#     'https://social-media-frontend-two.vercel.app',
+#     # '*', # all
+# ]
+# CORS_ALLOW_ALL_ORIGINS = True
 
-MIDDLEWARE = [
-    'social_django.middleware.SocialAuthExceptionMiddleware', #for google auth
-    'django.middleware.security.SecurityMiddleware',
-    
-    # cors headers
-    "corsheaders.middleware.CorsMiddleware",
-
-    # Hosting middle ware
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
-
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    
-
-    'corsheaders.middleware.CorsMiddleware', # add for cors headers
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 
 ROOT_URLCONF = 'backendAPI.urls'
 
@@ -228,6 +231,10 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -259,14 +266,13 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
 STATIC_URL = '/static/'
-CORS_ORIGIN_WHITELIST = 'localhost:3000',
 STATIC_DIRS = [
     os.path.join(BASE_DIR,"static")
 ]
@@ -274,3 +280,5 @@ STATIC_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGIN_WHITELIST = 'koobecaffrontend.herokuapp.com',
