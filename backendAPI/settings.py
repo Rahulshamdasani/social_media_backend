@@ -13,6 +13,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
+import environ
+env = environ.Env()
+environ.Env.read_env()
+DATABASE_URL = env('DATABASE_URL')
+print("DBURL+",DATABASE_URL)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,6 +53,11 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'profiles.apps.ProfilesConfig',
     'posts.apps.PostsConfig',
+    'search.apps.SearchConfig',
+    'directmessages.apps.DirectmessagesConfig',
+    'pages.apps.PagesConfig',
+    'events.apps.EventsConfig',
+
 
     # 3rd party
     'corsheaders',
@@ -57,6 +68,27 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'drf_yasg',
 
+]
+
+MIDDLEWARE = [
+    'social_django.middleware.SocialAuthExceptionMiddleware', #for google auth
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    
+
+    # Hosting middle ware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
+    # cors headers
+    "corsheaders.middleware.CorsMiddleware",
+
+    
+
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 AUTH_USER_MODEL = 'accounts.UserAccount'
@@ -70,7 +102,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # sends email usin
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'koobecafteam@gmail.com'
-EMAIL_HOST_PASSWORD = 'selftaught'
+EMAIL_HOST_PASSWORD = 'qziyntqdokjkldix'
 EMAIL_USE_TLS = True
 
 #           DRF settings
@@ -90,9 +122,6 @@ REST_FRAMEWORK = {
     #     'django_filters.rest_framework.DjangoFilterBackend'], # GLOBAL FILTERING on API
 }
 
-
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = False
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
@@ -156,35 +185,14 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.ema
 # CORS Settings  Cross-Origin Resource Sharing https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 # https://www.django-rest-framework.org/topics/ajax-csrf-cors/
 # CORS_ALLOWED_ORIGINS = [
-#     'http://localhost:8000', # default django port
+#     # 'http://localhost:8000', # default django port
 #     'http://localhost:3000', # default react port
-#     'http://127.0.0.1',
+#     'http://127.0.0.1:3000',
 #     'https://social-media-frontend-two.vercel.app',
 #     # '*', # all
 # ]
+# CORS_ALLOW_ALL_ORIGINS = True
 
-
-
-MIDDLEWARE = [
-    'social_django.middleware.SocialAuthExceptionMiddleware', #for google auth
-    'django.middleware.security.SecurityMiddleware',
-    
-    # cors headers
-    "corsheaders.middleware.CorsMiddleware",
-
-    # Hosting middle ware
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
-
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    
-
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 
 ROOT_URLCONF = 'backendAPI.urls'
 
@@ -213,8 +221,6 @@ CORS_ALLOWED_ORIGINS = [
     '*',
     'https://social-media-frontend-two.vercel.app',
 ]
-
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -224,6 +230,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -262,14 +272,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
-
 STATIC_URL = '/static/'
-
 STATIC_DIRS = [
     os.path.join(BASE_DIR,"static")
 ]
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGIN_WHITELIST = 'koobecaffrontend.herokuapp.com',

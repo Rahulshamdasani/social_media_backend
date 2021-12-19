@@ -83,3 +83,25 @@ class UpdateUserDetails(generics.UpdateAPIView):
             return Response({'Success':'Saved'}, status=status.HTTP_200_OK)
             # else:
                 # return Response({'Error':'Not saving'}, status=status.HTTP_304_NOT_MODIFIED)
+
+class GetAllProfiles(APIView):
+    """
+    Get all user profiles in a list.
+    """
+    permission_classes = [permissions.AllowAny,]
+
+    def get(self, request, format=None):
+        try:
+            profiles = Profile.objects.filter(user__is_superuser=False)
+            serializer = ProfileSerializer(profiles, many=True)
+            return Response(
+                {'profiles': serializer.data},
+                status=status.HTTP_200_OK
+            )
+        except Exception as e:
+            return Response(
+
+                {'error': f'couldnt grab all profiles: {e=}'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+    
