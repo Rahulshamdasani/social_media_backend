@@ -1,7 +1,8 @@
 # social_media_backend
 Creating a private repo to host the Django backend
 
-
+44966023 this branch is deployed 
+Django backend at : https://koobecaff.herokuapp.com/admin/
 
 
 
